@@ -6,16 +6,20 @@ vector<int> selectionSort (vector<int> arr)
 {
     int temp;
     
-    for (int j = 0; j < arr.size() - 1; j++)
+    for (int i = 0; i < arr.size() - 1; i++)
     {
-        for (int i = 1; i < arr.size(); i++)
+        int minIndex = i;
+        for (int j = i; j < arr.size(); j++)
         {
-            if (arr[i - 1] > arr[i])
-            {
-                temp = arr[i - 1];
-                arr[i - 1] = arr[i];
-                arr[i] = temp;
+            if(arr[minIndex] > arr[j]){
+                minIndex = j;
             }
+        }
+        if (minIndex != i)
+        {
+            temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
         }
     }
     return arr;
@@ -23,8 +27,6 @@ vector<int> selectionSort (vector<int> arr)
 int main()
 {
     vector<int> arr = { 3, 6, 2, 9, 8, 7, 1, 4, 5 };
-    
-    
     vector<int> newArr = selectionSort(arr);
     for(int x : newArr){
         cout << x << " ";
